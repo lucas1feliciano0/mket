@@ -1,8 +1,17 @@
 import React, {useContext} from 'react';
+import {useNavigation} from '@react-navigation/core';
 import {ThemeContext} from 'styled-components/native';
-import {MotiView} from 'moti';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+import {RootStackParamList} from '@routes/MainStack';
+
+type HomeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Introduction'
+>;
 
 import {
+  AnimatedView,
   BlueTitle,
   Button,
   Container,
@@ -14,14 +23,17 @@ import {
 } from './styles';
 
 const Introduction: React.FC = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
   const theme = useContext(ThemeContext);
+
+  function handleNavigate() {
+    navigation.navigate('Home');
+  }
 
   return (
     <Container>
       <StatusBar />
-      <MotiView
-        from={{translateY: -5, opacity: 0}}
-        animate={{translateY: 0, opacity: 1}}
+      <AnimatedView
         transition={{
           translateY: {
             delay: 100,
@@ -33,10 +45,8 @@ const Introduction: React.FC = () => {
         <Title>
           Bem-vindo ao <BlueTitle>mket!</BlueTitle>
         </Title>
-      </MotiView>
-      <MotiView
-        from={{translateY: -5, opacity: 0}}
-        animate={{translateY: 0, opacity: 1}}
+      </AnimatedView>
+      <AnimatedView
         transition={{
           translateY: {
             delay: 200,
@@ -48,10 +58,8 @@ const Introduction: React.FC = () => {
         <Subtitle>
           Aqui você poderá organizar e gerenciar suas idas ao mercado
         </Subtitle>
-      </MotiView>
-      <MotiView
-        from={{translateY: -5, opacity: 0}}
-        animate={{translateY: 0, opacity: 1}}
+      </AnimatedView>
+      <AnimatedView
         transition={{
           translateY: {
             delay: 300,
@@ -63,10 +71,8 @@ const Introduction: React.FC = () => {
         <IllustrationContainer>
           <Illustration width={theme.wp('65%')} height={theme.hp('30%')} />
         </IllustrationContainer>
-      </MotiView>
-      <MotiView
-        from={{translateY: -5, opacity: 0}}
-        animate={{translateY: 0, opacity: 1}}
+      </AnimatedView>
+      <AnimatedView
         transition={{
           translateY: {
             delay: 400,
@@ -75,8 +81,8 @@ const Introduction: React.FC = () => {
             delay: 550,
           },
         }}>
-        <Button title="Iniciar lista de compras" onPress={() => {}} />
-      </MotiView>
+        <Button title="Iniciar lista de compras" onPress={handleNavigate} />
+      </AnimatedView>
     </Container>
   );
 };

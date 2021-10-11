@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {MotiView} from 'moti';
 
 import ShoppingIllustration from '@assets/svg/shop.svg';
 
@@ -39,6 +40,11 @@ export const IllustrationContainer = styled.View`
 export const Illustration = ShoppingIllustration;
 
 export const Button = styled(ButtonComponent)``;
+
+export const AnimatedView = styled(MotiView).attrs({
+  from: {translateY: -5, opacity: 0},
+  animate: {translateY: 0, opacity: 1},
+})``;
 
 export const StatusBar = styled.StatusBar.attrs(props => ({
   backgroundColor: props.theme.colors.background.primary,
