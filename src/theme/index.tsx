@@ -45,6 +45,8 @@ const theme: DefaultTheme = {
     },
 
     shadow: '#D7DDE925',
+
+    disabled: '#838B90',
   },
 };
 

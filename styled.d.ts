@@ -42,6 +42,8 @@ declare module 'styled-components' {
       };
 
       shadow: string;
+
+      disabled: string;
     };
   }
 }

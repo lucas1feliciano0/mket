@@ -6,8 +6,9 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 
+import HomeTabs from './HomeTabs';
+
 import Introduction from '@screens/Introduction';
-import Home from '@screens/Home';
 
 export type RootStackParamList = {
   Introduction: undefined;
@@ -30,7 +31,7 @@ const MainStack: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="Introduction" component={Introduction} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={HomeTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
