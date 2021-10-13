@@ -5,6 +5,7 @@ import {ThemeContext} from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import Home from '@screens/Home';
+import Lists from '@screens/Lists';
 
 export type HomeTabParamList = {
   New: undefined;
@@ -56,7 +57,7 @@ const HomeTabs: React.FC = () => {
       <Tab.Screen
         name="Lists"
         options={{title: 'Minhas listas'}}
-        component={Home}
+        component={Lists}
       />
     </Tab.Navigator>
   );

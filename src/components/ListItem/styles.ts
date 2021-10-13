@@ -18,6 +18,11 @@ export const Container = styled.View`
   elevation: 10;
 `;
 
+export const Row = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const Column = styled.View`
   flex: 1;
 `;
@@ -47,13 +52,14 @@ export const DeleteButton = styled.Pressable.attrs(props => ({
     color: props.theme.colors.danger,
     borderless: true,
   },
-}))<PressableProps>`
+}))<{hasMargin?: boolean}>`
   width: ${props => props.theme.wp('9%')}px;
   height: ${props => props.theme.wp('9%')}px;
   background-color: ${props => props.theme.colors.danger_highlight};
   border-radius: ${props => props.theme.borderRadius.big}px;
   align-items: center;
   justify-content: center;
+  margin-right: ${props => (props.hasMargin ? props.theme.padding.small : 0)}px;
 `;
 
 export const DeleteIcon = styled(FeatherIcon).attrs(props => ({
@@ -62,8 +68,22 @@ export const DeleteIcon = styled(FeatherIcon).attrs(props => ({
   size: props.theme.wp('4.5%'),
 }))<any>``;
 
+export const EditButton = styled(DeleteButton).attrs(props => ({
+  android_ripple: {
+    color: props.theme.colors.success,
+    borderless: true,
+  },
+}))<PressableProps>`
+  background-color: ${props => props.theme.colors.success_highlight};
+`;
+
+export const EditIcon = styled(FeatherIcon).attrs(props => ({
+  name: 'check-square',
+  color: props.theme.colors.success,
+  size: props.theme.wp('4.5%'),
+}))<any>``;
+
 export const Icon = styled(FeatherIcon).attrs(props => ({
-  name: 'shopping-bag',
   color: props.theme.colors.secondary,
   size: props.theme.wp('9.6%'),
 }))``;

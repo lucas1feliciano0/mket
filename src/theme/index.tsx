@@ -32,7 +32,7 @@ const theme: DefaultTheme = {
     danger: '#F769A2',
     danger_highlight: '#FCCADE',
 
-    success: '#6AF678',
+    success: '#5ED46A',
     success_highlight: '#CAFCCF',
 
     background: {

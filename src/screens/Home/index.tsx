@@ -31,9 +31,21 @@ const Home: React.FC = () => {
   return (
     <Container>
       <StatusBar />
-      <ListItem title="Peito de frango" quantity={5} onDelete={() => {}} />
-      <ListItem title="Peito de frango" quantity={5} onDelete={() => {}} />
-      <ListItem title="Peito de frango" quantity={5} onDelete={() => {}} />
+      <ListItem
+        title="Peito de frango"
+        subtitle="6 unidades"
+        onDelete={() => {}}
+      />
+      <ListItem
+        title="Peito de frango"
+        subtitle="6 unidades"
+        onDelete={() => {}}
+      />
+      <ListItem
+        title="Peito de frango"
+        subtitle="6 unidades"
+        onDelete={() => {}}
+      />
       <AddProductButton onPress={handleNavigate}>
         <AddProductButtonText>Adicionar produto</AddProductButtonText>
       </AddProductButton>

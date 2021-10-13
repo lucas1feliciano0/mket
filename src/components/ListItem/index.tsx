@@ -5,8 +5,11 @@ import {
   Container,
   DeleteButton,
   DeleteIcon,
+  EditButton,
+  EditIcon,
   Icon,
   IconContainer,
+  Row,
   Subtitle,
   Title,
 } from './styles';
@@ -14,12 +17,22 @@ import {
 interface IProps {
   id?: string;
   title: string;
-  quantity: number;
+  subtitle: string;
   onDelete: (id: string) => void;
   style?: [];
+  mainIconName?: string;
+  editFunction?: () => void;
 }
 
-const ListItem: React.FC<IProps> = ({id, title, quantity, onDelete, style}) => {
+const ListItem: React.FC<IProps> = ({
+  id,
+  title,
+  subtitle,
+  onDelete,
+  style,
+  mainIconName = 'shopping-bag',
+  editFunction,
+}) => {
   function handleDelete() {
     onDelete(id);
   }
@@ -27,15 +40,22 @@ const ListItem: React.FC<IProps> = ({id, title, quantity, onDelete, style}) => {
   return (
     <Container style={style}>
       <IconContainer>
-        <Icon />
+        <Icon name={mainIconName} />
       </IconContainer>
       <Column>
         <Title>{title}</Title>
-        <Subtitle>{quantity} unidades</Subtitle>
+        <Subtitle>{subtitle}</Subtitle>
       </Column>
-      <DeleteButton onPress={handleDelete}>
-        <DeleteIcon />
-      </DeleteButton>
+      <Row>
+        <DeleteButton hasMargin={!!editFunction} onPress={handleDelete}>
+          <DeleteIcon />
+        </DeleteButton>
+        {!!editFunction && (
+          <EditButton onPress={handleDelete}>
+            <EditIcon />
+          </EditButton>
+        )}
+      </Row>
     </Container>
   );
 };
