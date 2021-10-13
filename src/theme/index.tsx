@@ -44,7 +44,7 @@ const theme: DefaultTheme = {
       secondary: '#757575',
     },
 
-    shadow: '#D7DDE925',
+    shadow: '#A3A8B1',
 
     disabled: '#838B90',
   },
