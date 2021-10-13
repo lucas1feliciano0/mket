@@ -9,6 +9,7 @@ import {
 import HomeTabs from './HomeTabs';
 
 import NewProduct from '@screens/NewProduct';
+import ListDetails from '@screens/ListDetails';
 
 import Introduction from '@screens/Introduction';
 import {ThemeContext} from 'styled-components';
@@ -17,6 +18,7 @@ export type RootStackParamList = {
   Introduction: undefined;
   Home: undefined;
   NewProduct: undefined;
+  ListDetails: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -53,6 +55,11 @@ const MainStack: React.FC = () => {
           name="NewProduct"
           options={{title: 'Adicionar novo item', headerShown: true}}
           component={NewProduct}
+        />
+        <Stack.Screen
+          name="ListDetails"
+          options={{title: 'Detalhes da lista', headerShown: true}}
+          component={ListDetails}
         />
       </Stack.Navigator>
     </NavigationContainer>

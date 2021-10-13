@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Checkbox,
   Column,
   Container,
   DeleteButton,
@@ -22,6 +23,8 @@ interface IProps {
   style?: [];
   mainIconName?: string;
   editFunction?: () => void;
+  onPress?: () => void;
+  onCheck?: (checked: boolean) => void;
 }
 
 const ListItem: React.FC<IProps> = ({
@@ -32,13 +35,15 @@ const ListItem: React.FC<IProps> = ({
   style,
   mainIconName = 'shopping-bag',
   editFunction,
+  onPress,
+  onCheck,
 }) => {
   function handleDelete() {
     onDelete(id);
   }
 
   return (
-    <Container style={style}>
+    <Container onPress={onPress} style={style}>
       <IconContainer>
         <Icon name={mainIconName} />
       </IconContainer>
@@ -47,14 +52,19 @@ const ListItem: React.FC<IProps> = ({
         <Subtitle>{subtitle}</Subtitle>
       </Column>
       <Row>
-        <DeleteButton hasMargin={!!editFunction} onPress={handleDelete}>
-          <DeleteIcon />
-        </DeleteButton>
+        {!!handleDelete && (
+          <DeleteButton
+            hasMargin={!!editFunction || !!onCheck}
+            onPress={handleDelete}>
+            <DeleteIcon />
+          </DeleteButton>
+        )}
         {!!editFunction && (
-          <EditButton onPress={handleDelete}>
+          <EditButton onPress={editFunction}>
             <EditIcon />
           </EditButton>
         )}
+        {onCheck && <Checkbox onPress={onCheck} />}
       </Row>
     </Container>
   );

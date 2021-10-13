@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {PressableProps} from 'react-native';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-export const Container = styled.View`
+export const Container = styled.Pressable`
   flex-direction: row;
   background-color: ${props => props.theme.colors.white};
   align-items: center;
@@ -86,4 +87,11 @@ export const EditIcon = styled(FeatherIcon).attrs(props => ({
 export const Icon = styled(FeatherIcon).attrs(props => ({
   color: props.theme.colors.secondary,
   size: props.theme.wp('9.6%'),
+}))<any>``;
+
+export const Checkbox = styled(BouncyCheckbox).attrs(props => ({
+  size: props.theme.wp('9%'),
+  fillColor: props.theme.colors.primary2,
+  iconStyle: {borderRadius: props.theme.borderRadius.big},
+  disableText: true,
 }))``;
