@@ -5,7 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import {RootStackParamList} from '@routes/MainStack';
 
-type HomeScreenNavigationProp = StackNavigationProp<
+type IntroductionScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Introduction'
 >;
@@ -23,7 +23,7 @@ import {
 } from './styles';
 
 const Introduction: React.FC = () => {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
+  const navigation = useNavigation<IntroductionScreenNavigationProp>();
   const theme = useContext(ThemeContext);
 
   function handleNavigate() {

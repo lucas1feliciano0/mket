@@ -30,7 +30,7 @@ const HomeTabs: React.FC = () => {
       <FeatherIcon name={icons[route.name]} size={size} color={color} />
     ),
     tabBarStyle: {
-      height: theme.hp('7.5%'),
+      height: theme.hp('8%'),
     },
     tabBarLabelPosition: 'beside-icon',
     tabBarActiveTintColor: theme.colors.primary,
