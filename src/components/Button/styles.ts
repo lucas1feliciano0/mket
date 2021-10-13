@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity<{disabled?: boolean}>`
   background-color: ${props => props.theme.colors.primary};
   height: ${props => props.theme.hp('7.5%')}px;
-  width: ${props => props.theme.wp('90%')}px;
+  width: ${props => props.theme.wp('88%')}px;
   justify-content: center;
   border-radius: ${props => props.theme.borderRadius.big}px;
   opacity: ${props => (props.disabled ? 0.7 : 1)};

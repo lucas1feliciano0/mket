@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex-direction: row;
   background-color: ${props => props.theme.colors.white};
   align-items: center;
-  width: ${props => props.theme.wp('90%')}px;
+  width: ${props => props.theme.wp('88%')}px;
   border-radius: ${props => props.theme.borderRadius.big}px;
   padding: ${props => props.theme.padding.medium}px;
   shadow-color: ${props => props.theme.colors.shadow};

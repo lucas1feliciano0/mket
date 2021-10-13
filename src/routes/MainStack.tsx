@@ -37,7 +37,7 @@ const MainStack: React.FC = () => {
     },
     headerTitleStyle: {
       fontFamily: 'Poppins-Regular',
-      fontSize: 18,
+      fontSize: 16,
       color: theme.colors.white,
     },
     headerTintColor: theme.colors.white,

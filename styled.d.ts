@@ -15,6 +15,7 @@ declare module 'styled-components' {
       small: number;
       medium: number;
       big: number;
+      large: number;
     };
 
     colors: {

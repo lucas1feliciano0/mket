@@ -4,7 +4,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import InputComponent from '../Input';
 
 export const Container = styled.View`
-  width: ${props => props.theme.wp('90%')}px;
+  width: ${props => props.theme.wp('88%')}px;
 `;
 
 export const Title = styled.Text`

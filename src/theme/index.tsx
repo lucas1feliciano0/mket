@@ -18,6 +18,7 @@ const theme: DefaultTheme = {
     small: wp('1%'),
     medium: wp('3%'),
     big: wp('5%'),
+    large: wp('12%'),
   },
 
   colors: {

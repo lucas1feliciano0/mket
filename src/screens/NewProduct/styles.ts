@@ -8,11 +8,14 @@ export const Container = styled.View`
   flex: 1;
   background-color: ${props => props.theme.colors.background.primary};
   align-items: center;
-  padding: ${props => props.theme.padding.big}px 0;
+  padding: ${props => props.theme.padding.big}px
+    ${props => props.theme.padding.large}px;
   justify-content: space-between;
 `;
 
-export const Form = styled.View``;
+export const Form = styled.View`
+  align-items: center;
+`;
 
 export const Input = styled(InputComponent)`
   margin-bottom: ${props => props.theme.padding.big}px;
