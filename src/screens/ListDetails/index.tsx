@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {StackNavigationProp} from '@react-navigation/stack';
 
@@ -20,12 +20,21 @@ import {
   ListItem,
   StatusBar,
 } from './styles';
+import CheckModal from '@components/CheckModal';
 
 const ListDetails: React.FC = () => {
   const navigation = useNavigation<ListDetailsScreenNavigationProp>();
 
+  const [showCheckModal, setShowCheckModal] = useState(false);
+
   function handleNavigate() {
     navigation.navigate('NewProduct');
+  }
+
+  function handleCheck(checked: boolean) {
+    if (checked) {
+      setShowCheckModal(true);
+    }
   }
 
   return (
@@ -35,7 +44,7 @@ const ListDetails: React.FC = () => {
         title="Peito de frango"
         subtitle="6 unidades"
         onDelete={() => {}}
-        onCheck={() => {}}
+        onCheck={handleCheck}
       />
       <AddProductButton onPress={handleNavigate}>
         <AddProductButtonText>Adicionar produto</AddProductButtonText>
@@ -50,6 +59,11 @@ const ListDetails: React.FC = () => {
           <InfoSubtitle>R$ 140,00</InfoSubtitle>
         </InfoContainer>
       </Footer>
+      <CheckModal
+        visible={showCheckModal}
+        onSubmitSave={() => {}}
+        onDismiss={() => setShowCheckModal(false)}
+      />
     </Container>
   );
 };

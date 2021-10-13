@@ -6,11 +6,12 @@ interface IProps {
   title: string;
   onPress: () => void;
   disabled?: boolean;
+  style?: [];
 }
 
-const Button: React.FC<IProps> = ({title, onPress, disabled}) => {
+const Button: React.FC<IProps> = ({title, onPress, disabled, style}) => {
   return (
-    <Container disabled={disabled} onPress={onPress}>
+    <Container style={style} disabled={disabled} onPress={onPress}>
       <Title>{title}</Title>
     </Container>
   );

@@ -19,9 +19,9 @@ interface IProps {
   id?: string;
   title: string;
   subtitle: string;
-  onDelete: (id: string) => void;
   style?: [];
   mainIconName?: string;
+  onDelete?: (id: string) => void;
   editFunction?: () => void;
   onPress?: () => void;
   onCheck?: (checked: boolean) => void;
@@ -52,7 +52,7 @@ const ListItem: React.FC<IProps> = ({
         <Subtitle>{subtitle}</Subtitle>
       </Column>
       <Row>
-        {!!handleDelete && (
+        {!!onDelete && (
           <DeleteButton
             hasMargin={!!editFunction || !!onCheck}
             onPress={handleDelete}>
