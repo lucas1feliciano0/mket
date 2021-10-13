@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import ListItemComponent from '@components/ListItem';
 
@@ -9,11 +10,23 @@ export const Container = styled.View`
   padding-top: 10px;
 `;
 
+export const List = styled.FlatList``;
+
 export const ListItem = styled(ListItemComponent)`
   margin-bottom: ${props => props.theme.padding.big}px;
 `;
 
+export const SaveButton = styled.TouchableOpacity`
+  margin-right: ${props => props.theme.padding.big}px;
+`;
+
+export const SaveIcon = styled(FeatherIcon).attrs(props => ({
+  name: 'check',
+  color: props.theme.colors.white,
+  size: props.theme.wp('7%'),
+}))<any>``;
+
 export const StatusBar = styled.StatusBar.attrs(props => ({
-  backgroundColor: props.theme.colors.background.primary,
-  barStyle: 'dark-content',
+  backgroundColor: props.theme.colors.primary2,
+  barStyle: 'light-content',
 }))``;

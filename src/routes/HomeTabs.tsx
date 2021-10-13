@@ -1,19 +1,17 @@
 import React, {useContext} from 'react';
-import {
-  BottomTabNavigationOptions,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {RouteProp} from '@react-navigation/core';
 import {ThemeContext} from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import Home from '@screens/Home';
 
-export type RootStackParamList = {
-  Introduction: undefined;
-  Home: undefined;
+export type HomeTabParamList = {
+  New: undefined;
+  Lists: undefined;
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<HomeTabParamList>();
 
 const HomeTabs: React.FC = () => {
   const theme = useContext(ThemeContext);
@@ -23,11 +21,14 @@ const HomeTabs: React.FC = () => {
     Lists: 'list',
   };
 
-  const screenOptions: BottomTabNavigationOptions = ({route}) => ({
+  const screenOptions = ({
+    route,
+  }: {
+    route: RouteProp<HomeTabParamList, keyof HomeTabParamList>;
+  }) => ({
     tabBarIcon: ({color, size}: any) => (
       <FeatherIcon name={icons[route.name]} size={size} color={color} />
     ),
-    headerShown: false,
     tabBarStyle: {
       height: theme.hp('7.5%'),
     },
@@ -37,6 +38,16 @@ const HomeTabs: React.FC = () => {
       fontFamily: 'Poppins-Regular',
       fontSize: 14,
     },
+    headerStyle: {
+      backgroundColor: theme.colors.primary2,
+      height: theme.hp('8%'),
+    },
+    headerTitleStyle: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: 18,
+      color: theme.colors.white,
+    },
+    headerTitleAlign: 'center',
   });
 
   return (

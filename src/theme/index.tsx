@@ -22,6 +22,7 @@ const theme: DefaultTheme = {
 
   colors: {
     primary: '#69ABF7',
+    primary2: '#8CBBF1',
     primary_highlight: '#CAE1FC',
 
     secondary: '#F6CD65',

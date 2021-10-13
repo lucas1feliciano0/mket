@@ -1,8 +1,21 @@
-import React from 'react';
+import {useNavigation} from '@react-navigation/core';
+import React, {useLayoutEffect} from 'react';
 
-import {Container, ListItem, StatusBar} from './styles';
+import {Container, ListItem, SaveButton, SaveIcon, StatusBar} from './styles';
 
 const Home: React.FC = () => {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <SaveButton>
+          <SaveIcon />
+        </SaveButton>
+      ),
+    });
+  }, [navigation]);
+
   return (
     <Container>
       <StatusBar />
