@@ -52,7 +52,7 @@ const HomeTabs: React.FC = () => {
   });
 
   return (
-    <Tab.Navigator screenOptions={screenOptions}>
+    <Tab.Navigator detachInactiveScreens={false} screenOptions={screenOptions}>
       <Tab.Screen name="New" options={{title: 'Nova lista'}} component={Home} />
       <Tab.Screen
         name="Lists"

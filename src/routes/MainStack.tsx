@@ -5,6 +5,9 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from '@react-navigation/stack';
+import {enableScreens} from 'react-native-screens';
+
+enableScreens(false);
 
 import HomeTabs from './HomeTabs';
 
@@ -48,7 +51,9 @@ const MainStack: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator
+        detachInactiveScreens={false}
+        screenOptions={screenOptions}>
         <Stack.Screen name="Introduction" component={Introduction} />
         <Stack.Screen name="Home" component={HomeTabs} />
         <Stack.Screen

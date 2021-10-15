@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {ThemeContext} from 'styled-components/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {MotiView} from 'moti';
 
 import {RootStackParamList} from '@routes/MainStack';
 
@@ -59,10 +60,12 @@ const Introduction: React.FC = () => {
           Aqui você poderá organizar e gerenciar suas idas ao mercado
         </Subtitle>
       </AnimatedView>
-      <AnimatedView
+      <MotiView
+        from={{scale: 0.3, opacity: 0}}
+        animate={{scale: 1, opacity: 1}}
         transition={{
-          translateY: {
-            delay: 300,
+          scale: {
+            delay: 450,
           },
           opacity: {
             delay: 450,
@@ -71,7 +74,7 @@ const Introduction: React.FC = () => {
         <IllustrationContainer>
           <Illustration width={theme.wp('65%')} height={theme.hp('30%')} />
         </IllustrationContainer>
-      </AnimatedView>
+      </MotiView>
       <AnimatedView
         transition={{
           translateY: {
