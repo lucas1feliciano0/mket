@@ -11,7 +11,9 @@ export const Container = styled.View`
   padding-top: 10px;
 `;
 
-export const List = styled.FlatList``;
+export const List = styled.FlatList`
+  flex-grow: 0;
+`;
 
 export const ListItem = styled(ListItemComponent)`
   margin-bottom: ${props => props.theme.padding.big}px;
