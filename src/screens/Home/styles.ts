@@ -8,7 +8,7 @@ import SaveButtonComponent from '@components/SaveButton';
 export const Container = styled.ScrollView.attrs(props => ({
   contentContainerStyle: {
     alignItems: 'center',
-    paddingTop: props.theme.padding.big,
+    paddingVertical: props.theme.padding.big,
   },
 }))<ScrollViewProps>`
   flex: 1;

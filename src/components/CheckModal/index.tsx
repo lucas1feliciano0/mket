@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {
   Container,
@@ -16,7 +16,7 @@ import {
 
 interface IProps {
   visible: boolean;
-  onSubmitSave: () => void;
+  onSubmitSave: (price: number) => void;
   onDismiss: () => void;
   onChangeValue?: (newValue: string) => void;
 }
@@ -27,8 +27,18 @@ const CheckModal: React.FC<IProps> = ({
   onDismiss,
   onChangeValue,
 }) => {
+  const [price, setPrice] = useState<number>();
+
+  function handleChangeValue(newValue: string) {
+    if (onChangeValue) {
+      onChangeValue(newValue);
+    }
+
+    setPrice(parseInt(newValue, 10));
+  }
+
   function handleSubmit() {
-    onSubmitSave();
+    onSubmitSave(price);
     onDismiss();
   }
 
@@ -48,12 +58,16 @@ const CheckModal: React.FC<IProps> = ({
             <CardTitle>Marcar como comprado</CardTitle>
           </CardHeader>
           <CardBody>
-            <ListItem title="Peito de frango" subtitle="6 unidades" />
+            <ListItem
+              title="Peito de frango"
+              subtitle="6 unidades"
+              checked={false}
+            />
             <InputContainer>
               <InputLabel>Informe o preço:</InputLabel>
               <Input
                 placeholder="Insira o valor do produto"
-                onChangeText={onChangeValue}
+                onChangeText={handleChangeValue}
               />
             </InputContainer>
             <Button title="Salvar" onPress={handleSubmit} />

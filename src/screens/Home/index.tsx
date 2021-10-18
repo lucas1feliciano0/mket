@@ -2,9 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import React, {useLayoutEffect} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import 'react-native-get-random-values';
-
 import {useDispatch, useSelector} from 'react-redux';
-import Animated, {SlideInRight} from 'react-native-reanimated';
 
 import {RootState} from '@store/ducks';
 import {Creators} from '@store/ducks/list';
@@ -24,6 +22,7 @@ export type ListProduct = {
   title: string;
   quantity: number | string;
   price: number;
+  checked: boolean;
 };
 
 import {
@@ -82,13 +81,13 @@ const Home: React.FC = () => {
       {list && (
         <>
           {list.products?.map(product => (
-            <Animated.View entering={SlideInRight} key={product.id}>
-              <ListItem
-                title={product.title}
-                subtitle={`${product.quantity} unidades`}
-                onDelete={() => handleDeleteProduct(product.id)}
-              />
-            </Animated.View>
+            <ListItem
+              key={product.id}
+              title={product.title}
+              subtitle={`${product.quantity} unidades`}
+              onDelete={() => handleDeleteProduct(product.id)}
+              checked={product.checked}
+            />
           ))}
           <AddProductButton onPress={handleNavigate}>
             <AddProductButtonText>Adicionar produto</AddProductButtonText>

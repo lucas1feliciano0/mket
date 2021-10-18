@@ -32,6 +32,9 @@ declare module 'styled-components' {
       success: string;
       success_highlight: string;
 
+      info: string;
+      info_highlight: string;
+
       background: {
         primary: string;
       };

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {PressableProps} from 'react-native';
+import {PressableProps, ScrollViewProps} from 'react-native';
 
 import ListItemComponent from '@components/ListItem';
 
@@ -10,7 +10,16 @@ export const Container = styled.View`
   padding-top: 10px;
 `;
 
-export const List = styled.FlatList``;
+export const ListContainer = styled.ScrollView.attrs(props => ({
+  contentContainerStyle: {
+    paddingBottom: props.theme.padding.big,
+    alignItems: 'center',
+  },
+  showsVerticalScrollIndicator: false,
+}))<ScrollViewProps>`
+  flex: 1;
+  width: 100%;
+`;
 
 export const ListItem = styled(ListItemComponent)`
   margin-bottom: ${props => props.theme.padding.big}px;

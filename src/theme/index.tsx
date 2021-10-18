@@ -35,6 +35,9 @@ const theme: DefaultTheme = {
     success: '#5ED46A',
     success_highlight: '#CAFCCF',
 
+    info: '#5e9dd4',
+    info_highlight: '#cae5fc',
+
     background: {
       primary: '#FDFDFF',
     },

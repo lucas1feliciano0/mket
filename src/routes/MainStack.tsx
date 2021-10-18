@@ -23,8 +23,12 @@ import {ThemeContext} from 'styled-components';
 export type RootStackParamList = {
   Introduction: undefined;
   Home: undefined;
-  NewProduct: undefined;
-  ListDetails: undefined;
+  NewProduct: {
+    listId?: string;
+  };
+  ListDetails: {
+    id: string;
+  };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

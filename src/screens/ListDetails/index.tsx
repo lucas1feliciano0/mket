@@ -1,13 +1,30 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/core';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
+import {useDispatch, useSelector} from 'react-redux';
 
+import {RootState} from '@store/ducks';
+import {Creators} from '@store/ducks/list';
+
+import CheckModal from '@components/CheckModal';
 import {RootStackParamList} from '@routes/MainStack';
+
+import {List} from '../Home';
 
 type ListDetailsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ListDetails'
 >;
+
+type ListDetailsScreenRouteProps = StackScreenProps<
+  RootStackParamList,
+  'ListDetails'
+>;
+
+type ProductData = {
+  id: string;
+  checked: boolean;
+};
 
 import {
   AddProductButton,
@@ -17,52 +34,97 @@ import {
   InfoContainer,
   InfoSubtitle,
   InfoTitle,
+  ListContainer,
   ListItem,
   StatusBar,
 } from './styles';
-import CheckModal from '@components/CheckModal';
 
-const ListDetails: React.FC = () => {
+const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation<ListDetailsScreenNavigationProp>();
+
+  const id = route.params.id;
+
+  const [activeCheckbox, setActiveCheckbox] = useState<ProductData>();
+
+  const lists: List[] = useSelector((state: RootState) => state.list.lists);
 
   const [showCheckModal, setShowCheckModal] = useState(false);
 
   function handleNavigate() {
-    navigation.navigate('NewProduct');
+    navigation.navigate('NewProduct', {
+      listId: id,
+    });
   }
 
-  function handleCheck(checked: boolean) {
+  function handleCheck(checked: boolean, productData: ProductData) {
     if (checked) {
+      setActiveCheckbox(productData);
       setShowCheckModal(true);
+    } else {
+      dispatch(Creators.editCheckListProduct(id, productData?.id, false, -1));
     }
   }
+
+  function handleSubmitCheck(price: number) {
+    dispatch(
+      Creators.editCheckListProduct(
+        id,
+        activeCheckbox.id,
+        activeCheckbox.checked,
+        price,
+      ),
+    );
+    setActiveCheckbox(undefined);
+  }
+
+  const list = lists.find(listToSearch => listToSearch.id === id);
+  const checkedProducts = list.products.filter(product => product.checked);
+  const value = checkedProducts
+    .map(product => product.price)
+    .reduce((a, b) => a + b, 0);
 
   return (
     <Container>
       <StatusBar />
-      <ListItem
-        title="Peito de frango"
-        subtitle="6 unidades"
-        onDelete={() => {}}
-        onCheck={handleCheck}
-      />
+      <ListContainer>
+        {list.products.map(product => (
+          <ListItem
+            key={product.id}
+            title={product.title}
+            subtitle={`${product.quantity} unidades`}
+            onCheck={(checked: boolean) =>
+              handleCheck(checked, {
+                id: product.id,
+                checked,
+              })
+            }
+            checked={product.checked}
+          />
+        ))}
+      </ListContainer>
       <AddProductButton onPress={handleNavigate}>
         <AddProductButtonText>Adicionar produto</AddProductButtonText>
       </AddProductButton>
       <Footer>
         <InfoContainer>
           <InfoTitle>Itens comprados</InfoTitle>
-          <InfoSubtitle>1/6</InfoSubtitle>
+          <InfoSubtitle>
+            {checkedProducts.length} / {list.products.length}
+          </InfoSubtitle>
         </InfoContainer>
         <InfoContainer>
           <InfoTitle>Total em reais</InfoTitle>
-          <InfoSubtitle>R$ 140,00</InfoSubtitle>
+          <InfoSubtitle>R$ {value}</InfoSubtitle>
         </InfoContainer>
       </Footer>
       <CheckModal
         visible={showCheckModal}
-        onSubmitSave={() => {}}
-        onDismiss={() => setShowCheckModal(false)}
+        onSubmitSave={handleSubmitCheck}
+        onDismiss={() => {
+          setShowCheckModal(false);
+          setActiveCheckbox(undefined);
+        }}
       />
     </Container>
   );

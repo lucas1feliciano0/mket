@@ -2,7 +2,6 @@ import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import Animated, {SlideInRight} from 'react-native-reanimated';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {RootState} from '@store/ducks';
@@ -26,8 +25,10 @@ const Lists: React.FC = () => {
 
   const lists: List[] = useSelector((state: RootState) => state.list.lists);
 
-  function handleOpenList() {
-    navigation.navigate('ListDetails');
+  function handleOpenList(id: string) {
+    navigation.navigate('ListDetails', {
+      id,
+    });
   }
 
   function handleDeleteList(id: string) {
@@ -37,17 +38,22 @@ const Lists: React.FC = () => {
   return (
     <Container>
       <StatusBar />
-      {lists?.map((list, index) => (
-        <Animated.View entering={SlideInRight} key={list.id}>
+      {lists?.map((list, index) => {
+        const checkedProducts = list.products.filter(
+          product => product.checked,
+        );
+        return (
           <ListItem
+            key={list.id}
             title={`Lista ${index + 1}`}
             subtitle={`${list.products.length} itens`}
             mainIconName="align-left"
-            editFunction={handleOpenList}
+            editFunction={() => handleOpenList(list.id)}
             onDelete={handleDeleteList}
+            finished={checkedProducts.length === list.products.length}
           />
-        </Animated.View>
-      ))}
+        );
+      })}
     </Container>
   );
 };
