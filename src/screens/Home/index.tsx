@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/core';
+import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import React, {useContext, useLayoutEffect} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import 'react-native-get-random-values';
@@ -10,8 +10,13 @@ import {ThemeContext} from 'styled-components/native';
 import {Creators} from '@store/ducks/list';
 
 import {RootStackParamList} from '@routes/MainStack';
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {HomeTabParamList} from '@routes/HomeTabs';
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type HomeScreenNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<HomeTabParamList, 'New'>,
+  StackNavigationProp<RootStackParamList, 'Home'>
+>;
 
 export type List = {
   id: string;
@@ -80,7 +85,10 @@ const Home: React.FC = () => {
     }
 
     function handleSaveDraft() {
-      dispatch(Creators.saveList());
+      if (list.products.length > 0) {
+        navigation.jumpTo('Lists');
+        dispatch(Creators.saveList());
+      }
     }
 
     if (list) {
@@ -100,7 +108,7 @@ const Home: React.FC = () => {
       <StatusBar />
       {list ? (
         <>
-          {list.products?.map(product => (
+          {list.products?.reverse().map(product => (
             <ListItem
               key={product.id}
               title={product.title}

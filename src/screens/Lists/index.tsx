@@ -38,22 +38,30 @@ const Lists: React.FC = () => {
   return (
     <Container>
       <StatusBar />
-      {lists?.map((list, index) => {
-        const checkedProducts = list.products.filter(
-          product => product.checked,
-        );
-        return (
-          <ListItem
-            key={list.id}
-            title={`Lista ${index + 1}`}
-            subtitle={`${list.products.length} itens`}
-            mainIconName="align-left"
-            editFunction={() => handleOpenList(list.id)}
-            onDelete={handleDeleteList}
-            finished={checkedProducts.length === list.products.length}
-          />
-        );
-      })}
+      {lists
+        .sort((list1, list2) =>
+          Math.abs(
+            new Date(list2.created_at).getTime() -
+              new Date(list1.created_at).getTime(),
+          ),
+        )
+        ?.map((list, index) => {
+          const checkedProducts = list.products?.filter(
+            product => product.checked,
+          );
+
+          return (
+            <ListItem
+              key={list.id}
+              title={`Lista ${index + 1}`}
+              subtitle={`${list.products?.length} itens`}
+              mainIconName="align-left"
+              editFunction={() => handleOpenList(list.id)}
+              onDelete={handleDeleteList}
+              finished={checkedProducts?.length === list.products?.length}
+            />
+          );
+        })}
     </Container>
   );
 };
