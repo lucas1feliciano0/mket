@@ -62,7 +62,9 @@ const MainStack: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator
+        detachInactiveScreens={false}
+        screenOptions={screenOptions}>
         {showIntroduction ? (
           <Stack.Screen name="Introduction" component={Introduction} />
         ) : (

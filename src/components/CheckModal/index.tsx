@@ -68,6 +68,9 @@ const CheckModal: React.FC<IProps> = ({
               <Input
                 placeholder="Insira o valor do produto"
                 onChangeText={handleChangeValue}
+                inputProps={{
+                  keyboardType: 'numeric',
+                }}
               />
             </InputContainer>
             <Button title="Salvar" onPress={handleSubmit} />

@@ -59,7 +59,6 @@ const NewProduct: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
 
     listCopy.products.push(item);
     if (listId) {
-      console.log('id: ', listId);
       dispatch(Creators.addProductList(listId, listCopy.products));
       navigation.goBack();
     } else {

@@ -100,6 +100,11 @@ const Home: React.FC = () => {
         ),
         headerRight: () => <SaveButton onPress={handleSaveDraft} />,
       });
+    } else {
+      navigation.setOptions({
+        headerLeft: () => null,
+        headerRight: () => null,
+      });
     }
   }, [dispatch, list, navigation]);
 
