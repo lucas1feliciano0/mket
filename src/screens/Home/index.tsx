@@ -17,14 +17,12 @@ export type List = {
   id: string;
   created_at: Date;
   products: ListProduct[];
-  deleted: boolean;
 };
 
 export type ListProduct = {
   id: string;
   title: string;
   quantity: number | string;
-  deleted: boolean;
   price: number;
 };
 
