@@ -2,11 +2,8 @@ import React, {useContext} from 'react';
 import {ThemeContext} from 'styled-components/native';
 import {useDispatch} from 'react-redux';
 import {MotiView} from 'moti';
-import {v4 as uuidv4} from 'uuid';
 
-import {Creators} from '@store/ducks/list';
-
-import {List} from '../Home';
+import {Creators} from '@store/ducks/user';
 
 import {
   AnimatedView,
@@ -24,15 +21,8 @@ const Introduction: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useContext(ThemeContext);
 
-  function handleInitDraft() {
-    const newList: List = {
-      id: uuidv4(),
-      created_at: new Date(),
-      deleted: false,
-      products: [],
-    };
-
-    dispatch(Creators.createListDraft(newList));
+  function handleSubmit() {
+    dispatch(Creators.changeShowIntroduction());
   }
 
   return (
@@ -88,7 +78,7 @@ const Introduction: React.FC = () => {
             delay: 550,
           },
         }}>
-        <Button title="Iniciar lista de compras" onPress={handleInitDraft} />
+        <Button title="Continuar" onPress={handleSubmit} />
       </AnimatedView>
     </Container>
   );

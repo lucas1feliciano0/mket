@@ -36,7 +36,9 @@ const Stack = createStackNavigator<RootStackParamList>();
 const MainStack: React.FC = () => {
   const theme = useContext(ThemeContext);
 
-  const list = useSelector((state: RootState) => state.list.activeListDraft);
+  const showIntroduction = useSelector(
+    (state: RootState) => state.user.showIntroduction,
+  );
 
   const screenOptions: StackNavigationOptions = {
     headerShown: false,
@@ -61,7 +63,7 @@ const MainStack: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
-        {!list ? (
+        {showIntroduction ? (
           <Stack.Screen name="Introduction" component={Introduction} />
         ) : (
           <Stack.Group>

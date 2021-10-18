@@ -1,10 +1,12 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useLayoutEffect} from 'react';
+import React, {useContext, useLayoutEffect} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import 'react-native-get-random-values';
 import {useDispatch, useSelector} from 'react-redux';
+import {v4 as uuidv4} from 'uuid';
 
 import {RootState} from '@store/ducks';
+import {ThemeContext} from 'styled-components/native';
 import {Creators} from '@store/ducks/list';
 
 import {RootStackParamList} from '@routes/MainStack';
@@ -28,16 +30,22 @@ export type ListProduct = {
 import {
   AddProductButton,
   AddProductButtonText,
+  Button,
   Container,
   DiscardButton,
   DiscardIcon,
+  Illustration,
+  IllustrationContainer,
   ListItem,
+  NoDraftContainer,
   SaveButton,
   StatusBar,
+  Subtitle,
 } from './styles';
 
 const Home: React.FC = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const theme = useContext(ThemeContext);
   const dispatch = useDispatch();
 
   const list: List = useSelector(
@@ -56,6 +64,16 @@ const Home: React.FC = () => {
     dispatch(Creators.editProductsListDraft(listCopy.products));
   }
 
+  function handleInitDraft() {
+    const newList: List = {
+      id: uuidv4(),
+      created_at: new Date(),
+      products: [],
+    };
+
+    dispatch(Creators.createListDraft(newList));
+  }
+
   useLayoutEffect(() => {
     function handleDiscardList() {
       dispatch(Creators.discardListDraft());
@@ -65,20 +83,22 @@ const Home: React.FC = () => {
       dispatch(Creators.saveList());
     }
 
-    navigation.setOptions({
-      headerLeft: () => (
-        <DiscardButton onPress={handleDiscardList}>
-          <DiscardIcon />
-        </DiscardButton>
-      ),
-      headerRight: () => <SaveButton onPress={handleSaveDraft} />,
-    });
-  }, [dispatch, navigation]);
+    if (list) {
+      navigation.setOptions({
+        headerLeft: () => (
+          <DiscardButton onPress={handleDiscardList}>
+            <DiscardIcon />
+          </DiscardButton>
+        ),
+        headerRight: () => <SaveButton onPress={handleSaveDraft} />,
+      });
+    }
+  }, [dispatch, list, navigation]);
 
   return (
     <Container>
       <StatusBar />
-      {list && (
+      {list ? (
         <>
           {list.products?.map(product => (
             <ListItem
@@ -93,6 +113,16 @@ const Home: React.FC = () => {
             <AddProductButtonText>Adicionar produto</AddProductButtonText>
           </AddProductButton>
         </>
+      ) : (
+        <NoDraftContainer>
+          <IllustrationContainer>
+            <Illustration width={theme.wp('65%')} height={theme.hp('30%')} />
+          </IllustrationContainer>
+          <Subtitle>
+            Inicie sua lista de compras clicando no botão abaixo
+          </Subtitle>
+          <Button title="Iniciar lista de compras" onPress={handleInitDraft} />
+        </NoDraftContainer>
       )}
     </Container>
   );
