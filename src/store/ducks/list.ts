@@ -14,7 +14,7 @@ export const {Types, Creators} = createActions(
     createListDraft: ['list'],
     editProductsListDraft: ['products'],
     discardListDraft: [],
-    saveList: ['id', 'products', 'deleted'],
+    saveList: [],
   },
   {prefix: '@lists/'},
 );
@@ -49,15 +49,12 @@ export const discardListDraft = (state = INITIAL_STATE) => {
   return {...state, activeListDraft};
 };
 
-export const saveList = (state = INITIAL_STATE, action: any) => {
-  const newList: List = {
-    id: action.payload.id,
-    created_at: new Date(),
-    products: action.payload.products,
-    deleted: action.payload.deleted,
+export const saveList = (state = INITIAL_STATE) => {
+  const newList = {
+    ...state.activeListDraft,
   };
-
-  return {...state, lists: [...state.lists, newList]};
+  const activeListDraft: List | null = null;
+  return {...state, lists: [...state.lists, newList], activeListDraft};
 };
 
 export const HANDLERS = {

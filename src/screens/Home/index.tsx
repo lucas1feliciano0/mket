@@ -64,13 +64,17 @@ const Home: React.FC = () => {
       dispatch(Creators.discardListDraft());
     }
 
+    function handleSaveDraft() {
+      dispatch(Creators.saveList());
+    }
+
     navigation.setOptions({
       headerLeft: () => (
         <DiscardButton onPress={handleDiscardList}>
           <DiscardIcon />
         </DiscardButton>
       ),
-      headerRight: () => <SaveButton onPress={() => {}} />,
+      headerRight: () => <SaveButton onPress={handleSaveDraft} />,
     });
   }, [dispatch, navigation]);
 

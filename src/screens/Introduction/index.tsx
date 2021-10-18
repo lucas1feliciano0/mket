@@ -65,7 +65,7 @@ const Introduction: React.FC = () => {
         </Subtitle>
       </AnimatedView>
       <MotiView
-        from={{scale: 0.3, opacity: 0}}
+        from={{scale: 0.5, opacity: 0}}
         animate={{scale: 1, opacity: 1}}
         transition={{
           scale: {
@@ -88,10 +88,7 @@ const Introduction: React.FC = () => {
             delay: 550,
           },
         }}>
-        <Button
-          title="Iniciar nova lista de compras"
-          onPress={handleInitDraft}
-        />
+        <Button title="Iniciar lista de compras" onPress={handleInitDraft} />
       </AnimatedView>
     </Container>
   );
