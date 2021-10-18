@@ -1,15 +1,12 @@
 import React, {useContext} from 'react';
-import {useNavigation} from '@react-navigation/core';
 import {ThemeContext} from 'styled-components/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {useDispatch} from 'react-redux';
 import {MotiView} from 'moti';
+import {v4 as uuidv4} from 'uuid';
 
-import {RootStackParamList} from '@routes/MainStack';
+import {Creators} from '@store/ducks/list';
 
-type IntroductionScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'Introduction'
->;
+import {List} from '../Home';
 
 import {
   AnimatedView,
@@ -24,11 +21,18 @@ import {
 } from './styles';
 
 const Introduction: React.FC = () => {
-  const navigation = useNavigation<IntroductionScreenNavigationProp>();
+  const dispatch = useDispatch();
   const theme = useContext(ThemeContext);
 
-  function handleNavigate() {
-    navigation.navigate('Home');
+  function handleInitDraft() {
+    const newList: List = {
+      id: uuidv4(),
+      created_at: new Date(),
+      deleted: false,
+      products: [],
+    };
+
+    dispatch(Creators.createListDraft(newList));
   }
 
   return (
@@ -84,7 +88,10 @@ const Introduction: React.FC = () => {
             delay: 550,
           },
         }}>
-        <Button title="Iniciar lista de compras" onPress={handleNavigate} />
+        <Button
+          title="Iniciar nova lista de compras"
+          onPress={handleInitDraft}
+        />
       </AnimatedView>
     </Container>
   );

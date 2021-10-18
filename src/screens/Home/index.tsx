@@ -1,8 +1,8 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import 'react-native-get-random-values';
-import {v4 as uuidv4} from 'uuid';
+
 import {useDispatch, useSelector} from 'react-redux';
 import Animated, {SlideInRight} from 'react-native-reanimated';
 
@@ -73,19 +73,6 @@ const Home: React.FC = () => {
       headerRight: () => <SaveButton onPress={() => {}} />,
     });
   }, [dispatch, navigation]);
-
-  useEffect(() => {
-    const newList: List = {
-      id: uuidv4(),
-      created_at: new Date(),
-      deleted: false,
-      products: [],
-    };
-
-    if (!list) {
-      dispatch(Creators.createListDraft(newList));
-    }
-  }, [dispatch, list]);
 
   return (
     <Container>

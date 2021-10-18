@@ -6,6 +6,9 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 import {enableScreens} from 'react-native-screens';
+import {useSelector} from 'react-redux';
+
+import {RootState} from '@store/ducks';
 
 enableScreens(false);
 
@@ -29,6 +32,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 const MainStack: React.FC = () => {
   const theme = useContext(ThemeContext);
 
+  const list = useSelector((state: RootState) => state.list.activeListDraft);
+
   const screenOptions: StackNavigationOptions = {
     headerShown: false,
     transitionSpec: {
@@ -51,21 +56,24 @@ const MainStack: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        detachInactiveScreens={false}
-        screenOptions={screenOptions}>
-        <Stack.Screen name="Introduction" component={Introduction} />
-        <Stack.Screen name="Home" component={HomeTabs} />
-        <Stack.Screen
-          name="NewProduct"
-          options={{title: 'Adicionar novo item', headerShown: true}}
-          component={NewProduct}
-        />
-        <Stack.Screen
-          name="ListDetails"
-          options={{title: 'Detalhes da lista', headerShown: true}}
-          component={ListDetails}
-        />
+      <Stack.Navigator screenOptions={screenOptions}>
+        {!list ? (
+          <Stack.Screen name="Introduction" component={Introduction} />
+        ) : (
+          <Stack.Group>
+            <Stack.Screen name="Home" component={HomeTabs} />
+            <Stack.Screen
+              name="NewProduct"
+              options={{title: 'Adicionar novo item', headerShown: true}}
+              component={NewProduct}
+            />
+            <Stack.Screen
+              name="ListDetails"
+              options={{title: 'Detalhes da lista', headerShown: true}}
+              component={ListDetails}
+            />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
