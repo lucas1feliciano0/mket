@@ -1,18 +1,18 @@
 import styled from 'styled-components/native';
-import {PressableProps} from 'react-native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import {PressableProps, ScrollViewProps} from 'react-native';
 
 import ListItemComponent from '@components/ListItem';
 import SaveButtonComponent from '@components/SaveButton';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs(props => ({
+  contentContainerStyle: {
+    alignItems: 'center',
+    paddingTop: props.theme.padding.big,
+  },
+}))<ScrollViewProps>`
   flex: 1;
   background-color: ${props => props.theme.colors.background.primary};
-  align-items: center;
-  padding-top: 10px;
-`;
-
-export const List = styled.FlatList`
-  flex-grow: 0;
 `;
 
 export const ListItem = styled(ListItemComponent)`
@@ -39,6 +39,16 @@ export const AddProductButtonText = styled.Text`
   color: ${props => props.theme.colors.primary};
   text-align: center;
 `;
+
+export const DiscardButton = styled.TouchableOpacity`
+  margin-left: ${props => props.theme.padding.big}px;
+`;
+
+export const DiscardIcon = styled(FeatherIcon).attrs(props => ({
+  name: 'trash',
+  color: props.theme.colors.white,
+  size: props.theme.wp('7%'),
+}))<any>``;
 
 export const StatusBar = styled.StatusBar.attrs(props => ({
   backgroundColor: props.theme.colors.primary2,

@@ -43,7 +43,10 @@
       ],
       "@theme/*": [
         "./src/theme/*"
-      ]
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
     }
   },
   "exclude": [

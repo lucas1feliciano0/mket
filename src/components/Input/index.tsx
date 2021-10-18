@@ -4,7 +4,7 @@ import {Container} from './styles';
 
 interface IProps {
   placeholder: string;
-  onChangeText: (newValue: string | number) => void;
+  onChangeText: (newValue: string) => void;
   value?: string | number;
   style?: [];
   inputProps?: {};
