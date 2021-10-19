@@ -24,6 +24,8 @@ type ListDetailsScreenRouteProps = StackScreenProps<
 type ProductData = {
   id: string;
   checked: boolean;
+  title?: string;
+  quantity: number | string;
 };
 
 import {
@@ -97,6 +99,8 @@ const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
               handleCheck(checked, {
                 id: product.id,
                 checked,
+                title: product.title,
+                quantity: product.quantity,
               })
             }
             checked={product.checked}
@@ -125,6 +129,8 @@ const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
           setShowCheckModal(false);
           setActiveCheckbox(undefined);
         }}
+        productTitle={activeCheckbox?.title}
+        productQuantity={activeCheckbox?.quantity}
       />
     </Container>
   );

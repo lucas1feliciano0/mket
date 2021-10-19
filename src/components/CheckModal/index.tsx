@@ -19,6 +19,8 @@ interface IProps {
   onSubmitSave: (price: number) => void;
   onDismiss: () => void;
   onChangeValue?: (newValue: string) => void;
+  productTitle?: string;
+  productQuantity?: number | string;
 }
 
 const CheckModal: React.FC<IProps> = ({
@@ -26,6 +28,8 @@ const CheckModal: React.FC<IProps> = ({
   onSubmitSave,
   onDismiss,
   onChangeValue,
+  productTitle,
+  productQuantity,
 }) => {
   const [price, setPrice] = useState<number>();
 
@@ -59,8 +63,8 @@ const CheckModal: React.FC<IProps> = ({
           </CardHeader>
           <CardBody>
             <ListItem
-              title="Peito de frango"
-              subtitle="6 unidades"
+              title={productTitle}
+              subtitle={`${productQuantity} unidades`}
               checked={false}
             />
             <InputContainer>

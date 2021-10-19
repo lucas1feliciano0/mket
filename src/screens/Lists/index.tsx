@@ -42,6 +42,10 @@ const Lists: React.FC = () => {
     });
   }
 
+  function handleNavigateToNew() {
+    navigation.jumpTo('New');
+  }
+
   function handleDeleteList(id: string) {
     dispatch(Creators.deleteList(id));
   }
@@ -82,7 +86,10 @@ const Lists: React.FC = () => {
           <Subtitle>
             Você não tem nenhuma lista salva. Clique no botão abaixo para criar!
           </Subtitle>
-          <Button title="Criar minha primeira lista" onPress={() => {}} />
+          <Button
+            title="Criar minha primeira lista"
+            onPress={handleNavigateToNew}
+          />
         </NoDraftContainer>
       )}
     </Container>
