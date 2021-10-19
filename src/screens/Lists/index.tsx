@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {useDispatch, useSelector} from 'react-redux';
+import {ThemeContext} from 'styled-components/native';
 
 import {RootState} from '@store/ducks';
 import {Creators} from '@store/ducks/list';
@@ -17,10 +18,20 @@ type ListsScreenNavigationProp = CompositeNavigationProp<
 
 import {List} from '../Home';
 
-import {Container, ListItem, StatusBar} from './styles';
+import {
+  Button,
+  Container,
+  Illustration,
+  IllustrationContainer,
+  ListItem,
+  NoDraftContainer,
+  StatusBar,
+  Subtitle,
+} from './styles';
 
 const Lists: React.FC = () => {
   const dispatch = useDispatch();
+  const theme = useContext(ThemeContext);
   const navigation = useNavigation<ListsScreenNavigationProp>();
 
   const lists: List[] = useSelector((state: RootState) => state.list.lists);
@@ -38,30 +49,42 @@ const Lists: React.FC = () => {
   return (
     <Container>
       <StatusBar />
-      {lists
-        .sort((list1, list2) =>
-          Math.abs(
-            new Date(list2.created_at).getTime() -
-              new Date(list1.created_at).getTime(),
-          ),
-        )
-        ?.map((list, index) => {
-          const checkedProducts = list.products?.filter(
-            product => product.checked,
-          );
+      {lists.length > 0 ? (
+        lists
+          .sort((list1, list2) =>
+            Math.abs(
+              new Date(list2.created_at).getTime() -
+                new Date(list1.created_at).getTime(),
+            ),
+          )
+          ?.map((list, index) => {
+            const checkedProducts = list.products?.filter(
+              product => product.checked,
+            );
 
-          return (
-            <ListItem
-              key={list.id}
-              title={`Lista ${index + 1}`}
-              subtitle={`${list.products?.length} itens`}
-              mainIconName="align-left"
-              editFunction={() => handleOpenList(list.id)}
-              onDelete={handleDeleteList}
-              finished={checkedProducts?.length === list.products?.length}
-            />
-          );
-        })}
+            return (
+              <ListItem
+                key={list.id}
+                title={`Lista ${index + 1}`}
+                subtitle={`${list.products?.length} itens`}
+                mainIconName="align-left"
+                editFunction={() => handleOpenList(list.id)}
+                onDelete={handleDeleteList}
+                finished={checkedProducts?.length === list.products?.length}
+              />
+            );
+          })
+      ) : (
+        <NoDraftContainer>
+          <IllustrationContainer>
+            <Illustration width={theme.wp('65%')} height={theme.hp('30%')} />
+          </IllustrationContainer>
+          <Subtitle>
+            Você não tem nenhuma lista salva. Clique no botão abaixo para criar!
+          </Subtitle>
+          <Button title="Criar minha primeira lista" onPress={() => {}} />
+        </NoDraftContainer>
+      )}
     </Container>
   );
 };
