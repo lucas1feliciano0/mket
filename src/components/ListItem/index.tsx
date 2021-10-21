@@ -70,13 +70,7 @@ const ListItem: React.FC<IProps> = ({
               <EditIcon />
             </EditButton>
           )}
-          {onCheck && (
-            <Checkbox
-              isChecked={checked}
-              onPress={onCheck}
-              disableBuiltInState
-            />
-          )}
+          {onCheck && <Checkbox isChecked={checked} onPress={onCheck} />}
         </Row>
       </Container>
     </Animated.View>

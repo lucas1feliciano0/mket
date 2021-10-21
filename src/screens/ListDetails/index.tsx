@@ -83,7 +83,7 @@ const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
   const list = lists.find(listToSearch => listToSearch.id === id);
   const checkedProducts = list.products.filter(product => product.checked);
   const value = checkedProducts
-    .map(product => product.price)
+    .map(product => product.price * product.quantity)
     .reduce((a, b) => a + b, 0);
 
   return (
@@ -106,10 +106,10 @@ const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
             checked={product.checked}
           />
         ))}
+        <AddProductButton onPress={handleNavigate}>
+          <AddProductButtonText>Adicionar produto</AddProductButtonText>
+        </AddProductButton>
       </ListContainer>
-      <AddProductButton onPress={handleNavigate}>
-        <AddProductButtonText>Adicionar produto</AddProductButtonText>
-      </AddProductButton>
       <Footer>
         <InfoContainer>
           <InfoTitle>Itens comprados</InfoTitle>
@@ -119,7 +119,7 @@ const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
         </InfoContainer>
         <InfoContainer>
           <InfoTitle>Total em reais</InfoTitle>
-          <InfoSubtitle>R$ {value}</InfoSubtitle>
+          <InfoSubtitle>R$ {value.toFixed(2)}</InfoSubtitle>
         </InfoContainer>
       </Footer>
       <CheckModal

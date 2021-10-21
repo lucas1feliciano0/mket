@@ -38,7 +38,7 @@ const CheckModal: React.FC<IProps> = ({
       onChangeValue(newValue);
     }
 
-    setPrice(parseInt(newValue, 10));
+    setPrice(parseFloat(newValue));
   }
 
   function handleSubmit() {
@@ -68,7 +68,7 @@ const CheckModal: React.FC<IProps> = ({
               checked={false}
             />
             <InputContainer>
-              <InputLabel>Informe o preço:</InputLabel>
+              <InputLabel>Informe o preço (unidade):</InputLabel>
               <Input
                 placeholder="Insira o valor do produto"
                 onChangeText={handleChangeValue}

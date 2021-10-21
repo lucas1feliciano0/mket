@@ -4,6 +4,7 @@ import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {useDispatch, useSelector} from 'react-redux';
 import {ThemeContext} from 'styled-components/native';
+import {format} from 'date-fns';
 
 import {RootState} from '@store/ducks';
 import {Creators} from '@store/ducks/list';
@@ -55,13 +56,12 @@ const Lists: React.FC = () => {
       <StatusBar />
       {lists.length > 0 ? (
         lists
-          .sort((list1, list2) =>
-            Math.abs(
+          .sort(
+            (list1, list2) =>
               new Date(list2.created_at).getTime() -
-                new Date(list1.created_at).getTime(),
-            ),
+              new Date(list1.created_at).getTime(),
           )
-          ?.map((list, index) => {
+          ?.map(list => {
             const checkedProducts = list.products?.filter(
               product => product.checked,
             );
@@ -69,7 +69,7 @@ const Lists: React.FC = () => {
             return (
               <ListItem
                 key={list.id}
-                title={`Lista ${index + 1}`}
+                title={`Lista de ${format(list.created_at, 'dd/MM/yyyy')}`}
                 subtitle={`${list.products?.length} itens`}
                 mainIconName="align-left"
                 editFunction={() => handleOpenList(list.id)}
