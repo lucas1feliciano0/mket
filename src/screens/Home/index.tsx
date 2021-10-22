@@ -20,7 +20,7 @@ type HomeScreenNavigationProp = CompositeNavigationProp<
 
 export type List = {
   id: string;
-  created_at: Date;
+  created_at: Date | string;
   products: ListProduct[];
 };
 

@@ -68,4 +68,11 @@ export const ListItem = styled(ListItemComponent)`
   margin: ${props => props.theme.padding.big}px 0;
 `;
 
+export const ErrorLabel = styled.Text`
+  font-size: 12px;
+  font-family: 'Poppins-Regular';
+  color: ${props => props.theme.colors.danger};
+  margin-left: ${props => props.theme.wp('0.7%')}px;
+`;
+
 // export const ListItem = styled(ListItemComponent)``;

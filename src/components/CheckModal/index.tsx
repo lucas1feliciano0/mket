@@ -12,6 +12,7 @@ import {
   InputContainer,
   Button,
   ListItem,
+  ErrorLabel,
 } from './styles';
 
 interface IProps {
@@ -32,18 +33,24 @@ const CheckModal: React.FC<IProps> = ({
   productQuantity,
 }) => {
   const [price, setPrice] = useState<number>();
+  const [error, setError] = useState(false);
 
   function handleChangeValue(newValue: string) {
     if (onChangeValue) {
       onChangeValue(newValue);
     }
 
+    setError(false);
     setPrice(parseFloat(newValue));
   }
 
   function handleSubmit() {
-    onSubmitSave(price);
-    onDismiss();
+    if (price) {
+      onSubmitSave(price);
+      onDismiss();
+    } else {
+      setError(true);
+    }
   }
 
   return (
@@ -76,6 +83,7 @@ const CheckModal: React.FC<IProps> = ({
                   keyboardType: 'numeric',
                 }}
               />
+              {error && <ErrorLabel>Insira o preço</ErrorLabel>}
             </InputContainer>
             <Button title="Salvar" onPress={handleSubmit} />
           </CardBody>

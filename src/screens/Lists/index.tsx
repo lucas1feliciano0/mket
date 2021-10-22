@@ -4,7 +4,7 @@ import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {useDispatch, useSelector} from 'react-redux';
 import {ThemeContext} from 'styled-components/native';
-import {format, isValid} from 'date-fns';
+import {format, isValid, parseISO} from 'date-fns';
 
 import {RootState} from '@store/ducks';
 import {Creators} from '@store/ducks/list';
@@ -68,7 +68,7 @@ const Lists: React.FC = () => {
             const title = `Lista ${
               isValid(list.created_at)
                 ? `de ${format(list.created_at, 'dd/MM/yyyy')}`
-                : ''
+                : `de ${format(parseISO(list.created_at), 'dd/MM/yyyy')}`
             }`;
             return (
               <ListItem

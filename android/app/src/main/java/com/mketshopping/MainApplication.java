@@ -1,4 +1,4 @@
-package com.mket;
+package com.mketshopping;
 
 import android.app.Application;
 import android.content.Context;

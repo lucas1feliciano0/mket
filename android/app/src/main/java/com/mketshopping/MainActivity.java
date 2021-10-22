@@ -1,4 +1,4 @@
-package com.mket;
+package com.mketshopping;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
