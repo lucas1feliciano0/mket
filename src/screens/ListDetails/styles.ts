@@ -25,6 +25,13 @@ export const ListItem = styled(ListItemComponent)`
   margin-bottom: ${props => props.theme.padding.big}px;
 `;
 
+export const AddProductButtonContainer = styled.View`
+  height: ${props => props.theme.hp('7.5%')}px;
+  width: ${props => props.theme.wp('90%')}px;
+  border-radius: ${props => props.theme.borderRadius.big}px;
+  overflow: hidden;
+`;
+
 export const AddProductButton = styled.Pressable.attrs(props => ({
   android_ripple: {
     color: props.theme.colors.primary,
@@ -34,7 +41,6 @@ export const AddProductButton = styled.Pressable.attrs(props => ({
   height: ${props => props.theme.hp('7.5%')}px;
   width: ${props => props.theme.wp('90%')}px;
   justify-content: center;
-  border-radius: ${props => props.theme.borderRadius.big}px;
 `;
 
 export const AddProductButtonText = styled.Text`

@@ -4,7 +4,7 @@ import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {useDispatch, useSelector} from 'react-redux';
 import {ThemeContext} from 'styled-components/native';
-import {format} from 'date-fns';
+import {format, isValid} from 'date-fns';
 
 import {RootState} from '@store/ducks';
 import {Creators} from '@store/ducks/list';
@@ -65,11 +65,15 @@ const Lists: React.FC = () => {
             const checkedProducts = list.products?.filter(
               product => product.checked,
             );
-
+            const title = `Lista ${
+              isValid(list.created_at)
+                ? `de ${format(list.created_at, 'dd/MM/yyyy')}`
+                : ''
+            }`;
             return (
               <ListItem
                 key={list.id}
-                title={`Lista de ${format(list.created_at, 'dd/MM/yyyy')}`}
+                title={title}
                 subtitle={`${list.products?.length} itens`}
                 mainIconName="align-left"
                 editFunction={() => handleOpenList(list.id)}

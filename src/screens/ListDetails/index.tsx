@@ -30,6 +30,7 @@ type ProductData = {
 
 import {
   AddProductButton,
+  AddProductButtonContainer,
   AddProductButtonText,
   Container,
   Footer,
@@ -106,9 +107,11 @@ const ListDetails: React.FC<ListDetailsScreenRouteProps> = ({route}) => {
             checked={product.checked}
           />
         ))}
-        <AddProductButton onPress={handleNavigate}>
-          <AddProductButtonText>Adicionar produto</AddProductButtonText>
-        </AddProductButton>
+        <AddProductButtonContainer>
+          <AddProductButton onPress={handleNavigate}>
+            <AddProductButtonText>Adicionar produto</AddProductButtonText>
+          </AddProductButton>
+        </AddProductButtonContainer>
       </ListContainer>
       <Footer>
         <InfoContainer>

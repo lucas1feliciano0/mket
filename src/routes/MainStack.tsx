@@ -66,7 +66,11 @@ const MainStack: React.FC = () => {
         detachInactiveScreens={false}
         screenOptions={screenOptions}>
         {showIntroduction ? (
-          <Stack.Screen name="Introduction" component={Introduction} />
+          <Stack.Screen
+            name="Introduction"
+            component={Introduction}
+            options={{animationEnabled: false}}
+          />
         ) : (
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeTabs} />

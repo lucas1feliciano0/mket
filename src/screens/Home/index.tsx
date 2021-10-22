@@ -34,6 +34,7 @@ export type ListProduct = {
 
 import {
   AddProductButton,
+  AddProductButtonContainer,
   AddProductButtonText,
   Button,
   Container,
@@ -122,9 +123,11 @@ const Home: React.FC = () => {
               checked={product.checked}
             />
           ))}
-          <AddProductButton onPress={handleNavigate}>
-            <AddProductButtonText>Adicionar produto</AddProductButtonText>
-          </AddProductButton>
+          <AddProductButtonContainer>
+            <AddProductButton onPress={handleNavigate}>
+              <AddProductButtonText>Adicionar produto</AddProductButtonText>
+            </AddProductButton>
+          </AddProductButtonContainer>
         </>
       ) : (
         <NoDraftContainer>
