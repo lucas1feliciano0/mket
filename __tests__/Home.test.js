@@ -30,10 +30,6 @@ describe('Home', () => {
     render(StackProvider);
   });
 
-  it('should render', () => {
-    render(StackProvider);
-  });
-
   it('should render a button to init the list draft', () => {
     const {getByText} = render(StackProvider);
 
