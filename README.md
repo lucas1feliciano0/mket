@@ -1,68 +1,76 @@
-# :space_invader: React Native Template TypeScript
+<h1 align="center">Welcome to <span style="color: #69ABF7;">mket</span> 👋</h1>
 
-<p>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/actions/workflows/npm-publish.yml">
-    <img alt="Build Status" src="https://github.com/react-native-community/react-native-template-typescript/actions/workflows/npm-publish.yml/badge.svg" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-</p>
+> App that allows you to organize shopping lists, storing purchased items and their respective values. Along with the final list value
 
-> Clean and minimalist React Native template for a quick start with TypeScript.
+### :rocket: Technologies used
 
-## :star: Features
+- [React Native](https://reactnative.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled-Components](https://styled-components.com/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+- [Moti](https://moti.fyi/)
+- [Lottie](https://airbnb.design/lottie/)
+- [Redux](https://redux.js.org/)
+- [Redux Persist](https://github.com/rt2zz/redux-persist)
+- [Reduxsauce](https://github.com/jkeam/reduxsauce)
+- [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
+- [UUID](https://github.com/uuidjs/uuid)
 
-- Elegant usage directly within the [React Native CLI](https://github.com/react-native-community/cli)
-- Consistent with the default React Native template
-- Minimal additional dependencies
 
-## :arrow_forward: Usage
+### 🧭 Running the application
 
-```sh
-npx react-native init MyApp --template react-native-template-typescript
+```bash
+# clone this repository
+$ git clone
+
+# install the dependencies
+$ yarn install
+
+# run in the emulator or on a device
+$ yarn android
+
 ```
 
-### Usage with older versions of React Native
+### 🐞 Testing the application
 
-#### e.g. `react-native@0.65.x`
+```bash
 
-```sh
-npx react-native init MyApp --template react-native-template-typescript@6.7.*
+$ yarn test
+
 ```
 
-See the below table to find out which version of the template to use.
+### 📱 Screenshots
 
-#### React Native <=> Template Version
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
 
-| React Native | Template |
-| ------------ | -------- |
-| 0.66         | 6.8.\*   |
-| 0.65         | 6.7.\*   |
-| 0.64         | 6.6.\*   |
-| 0.63         | 6.5.\*   |
-| 0.62         | 6.4.\*   |
-| 0.61         | 6.3.\*   |
-| 0.60         | 6.2.\*   |
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/intro.jpg" width="200" height="auto">
 
-## :warning: React Native CLI
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/home_no_list.jpg" width="200" height="auto">
 
-This template only works with the new CLI. Make sure you have uninstalled the legacy `react-native-cli` first (`npm uninstall -g react-native-cli`) for the below command to work. If you wish to not use `npx`, you can also install the new CLI globally (`npm i -g @react-native-community/cli` or `yarn global add @react-native-community/cli`).
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/add_product.jpg" width="200" height="auto">
 
-If you tried the above and still get the react-native-template-react- native-template-typescript: Not found error, please try adding the `--ignore-existing` flag to [force npx to ignore](https://github.com/npm/npx#description) any locally installed versions of the CLI and use the latest.
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/list_with_product.jpg" width="200" height="auto">
 
-Further information can be found here: https://github.com/react-native-community/cli#about
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/lists_empty.jpg" width="200" height="auto">
 
-## :computer: Contributing
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/lists.jpg" width="200" height="auto">
 
-Contributions are very welcome. Please check out the [contributing document](CONTRIBUTING.md).
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/list_details.jpg" width="200" height="auto">
 
-## :bookmark: License
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/list_details2.jpg" width="200" height="auto">
 
-This project is [MIT](LICENSE) licensed.
+<img style="margin: 0 23px" alt="Trending repositories timeline" src="/screenshots/check_modal.jpg" width="200" height="auto">
+
+</div>
+
+## 🧑 Author
+
+👤 **Lucas Feliciano**
+
+* Github: [@lucas1feliciano0](https://github.com/lucas1feliciano0)
+* LinkedIn: [@lucas1feliciano0](https://linkedin.com/in/lucas1feliciano0)
+
+
+❤️ 👋🏽
