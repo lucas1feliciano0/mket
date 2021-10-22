@@ -5,11 +5,12 @@ import {Container, Icon} from './styles';
 interface IProps {
   onPress: () => void;
   style?: [];
+  testID?: string;
 }
 
-const SaveButton: React.FC<IProps> = ({onPress, style}) => {
+const SaveButton: React.FC<IProps> = ({onPress, style, testID}) => {
   return (
-    <Container onPress={onPress} style={style}>
+    <Container onPress={onPress} style={style} testID={testID}>
       <Icon />
     </Container>
   );

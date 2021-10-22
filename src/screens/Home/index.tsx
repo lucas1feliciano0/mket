@@ -95,11 +95,18 @@ const Home: React.FC = () => {
     if (list) {
       navigation.setOptions({
         headerLeft: () => (
-          <DiscardButton onPress={handleDiscardList}>
+          <DiscardButton
+            onPress={handleDiscardList}
+            testID="delete-list-draft-button">
             <DiscardIcon />
           </DiscardButton>
         ),
-        headerRight: () => <SaveButton onPress={handleSaveDraft} />,
+        headerRight: () => (
+          <SaveButton
+            onPress={handleSaveDraft}
+            testID="save-list-draft-button"
+          />
+        ),
       });
     } else {
       navigation.setOptions({

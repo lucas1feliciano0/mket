@@ -13,6 +13,7 @@ import theme from '../src/theme';
 const navContext = {
   isFocused: () => true,
   addListener: jest.fn(() => jest.fn()),
+  jumpTo: jest.fn(() => jest.fn()),
 };
 
 const AllProviders = ({children}) => (

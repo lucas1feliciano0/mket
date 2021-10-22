@@ -18,7 +18,7 @@ import NewProduct from '@screens/NewProduct';
 import ListDetails from '@screens/ListDetails';
 
 import Introduction from '@screens/Introduction';
-import {ThemeContext} from 'styled-components';
+import {ThemeContext} from 'styled-components/native';
 
 export type RootStackParamList = {
   Introduction: undefined;
